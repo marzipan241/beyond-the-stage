@@ -1,0 +1,37 @@
+---
+title: "Beyond the Stage"
+author: "Margaret Sun"
+date: "4/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(tidytext)
+```
+
+## Final Project Milestone
+
+```{r}
+# Rough Github repo, with all necessary data, and reproducible Rmd document. The Rmd must contain two items. First, a brief description of the data, where you got, what you have done with it so far and what you plan to do. Second, a beautiful ggplot2 graphic using some of the data.
+```
+
+## Notes to Self
+
+#### Twitter API
+
+* API: Application Programming Interface
+
+* Search API
+
+* May need to use Python package tweepy
+
+#### Limitations of Twitter Data
+
+* Can't collect data on observers
+
+* Restricted access (about 1% sample) 
+
+* Can't collect historical data
