@@ -8,30 +8,41 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
+# Import relevant libraries
+
 library(tidyverse)
 library(tidytext)
+library(ggplot2)
 ```
 
 ## Final Project Milestone
 
-```{r}
-# Rough Github repo, with all necessary data, and reproducible Rmd document. The Rmd must contain two items. First, a brief description of the data, where you got, what you have done with it so far and what you plan to do. Second, a beautiful ggplot2 graphic using some of the data.
+
+#### Question:
+
+Twitter API portions to come: if we are not looking at Python ever again in class, am I allowed to use it for the Final Project? 
+
+
+#### Data Description: 
+
+* Data included thus far represents the fundamental organization of the project, by tour dates and locations for the band BTS' world tour, "BTS World Tour: Love Yourself". 
+
+* "love_yourself" includes all dates, geographic locations, attendance, and revenue of each concert stop
+
+* Attendance and revenue for the following shows were found as the sum of all shows at the respective location: Seoul, North American cities, London, Berlin, Paris, Japan cities,  Taoyuan, Hong Kong, Bangkok
+
+* Data for each show is the sum divided by the number of shows per city, and may differ from actual venues, consider redividing in proportion to relative stadium capacities
+
+```{r download, echo=FALSE, message=FALSE, warning=FALSE}
+
+# Read in data set
+
+love_yourself <- read_csv("love_yourself.csv")
 ```
 
-## Notes to Self
+```{r graphic, echo=FALSE}
 
-#### Twitter API
-
-* API: Application Programming Interface
-
-* Search API
-
-* May need to use Python package tweepy
-
-#### Limitations of Twitter Data
-
-* Can't collect data on observers
-
-* Restricted access (about 1% sample) 
-
-* Can't collect historical data
+love_yourself %>% 
+  group_by(country) %>% 
+  count(attendance)
+```

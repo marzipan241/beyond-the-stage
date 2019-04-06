@@ -191,13 +191,38 @@ $(document).ready(function () {
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
+<div id="final-project-milestone" class="section level2">
+<h2>Final Project Milestone</h2>
+<div id="question" class="section level4">
+<h4>Question:</h4>
+<p>Twitter API portions to come: if we are not looking at Python ever again in class, am I allowed to use it for the Final Project?</p>
 </div>
-<div id="notes-to-self" class="section level2">
-<h2>Notes to Self</h2>
-<p>Twitter API * API: Application Programming Interface * Search API * May need to use Python package tweepy</p>
-<p>Limitations of Twitter Data * Can’t collect data on observers * Restricted access (about 1% sample) * Can’t collect historical data</p>
+<div id="data-description" class="section level4">
+<h4>Data Description:</h4>
+<ul>
+<li><p>Data included thus far represents the fundamental organization of the project, by tour dates and locations for the band BTS’ world tour, “BTS World Tour: Love Yourself”.</p></li>
+<li><p>“love_yourself” includes all dates, geographic locations, attendance, and revenue of each concert stop</p></li>
+<li><p>Attendance and revenue for the following shows were found as the sum of all shows at the respective location: Seoul, North American cities, London, Berlin, Paris, Japan cities, Taoyuan, Hong Kong, Bangkok</p></li>
+<li><p>Data for each show is the sum divided by the number of shows per city, and may differ from actual venues, consider redividing in proportion to relative stadium capacities</p></li>
+</ul>
+<pre><code>## # A tibble: 13 x 3
+## # Groups:   country [12]
+##    country       attendance     n
+##    &lt;chr&gt;              &lt;dbl&gt; &lt;int&gt;
+##  1 Canada             12857     3
+##  2 England            15738     2
+##  3 France             14075     2
+##  4 Germany            15000     2
+##  5 Hong Kong          14000     4
+##  6 Japan              42222     9
+##  7 Netherlands        13893     1
+##  8 Singapore          45000     1
+##  9 South Korea        45000     2
+## 10 Taiwan             25000     2
+## 11 Thailand           40000     2
+## 12 United States      12857    11
+## 13 United States      40000     1</code></pre>
+</div>
 </div>
 
 
