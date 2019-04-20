@@ -56,7 +56,7 @@ love_yourself %>%
   group_by(city, continent) %>% 
   count(attendance) %>% 
 
-  ggplot(aes(x = city, y = attendance, color = continent)) +
+  ggplot(aes(x = city, y = attendance, color = continent, fill = continent)) +
   geom_col() +
   coord_flip() +
   labs(title = "Average Attendance of Each Concert Stop",
