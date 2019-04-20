@@ -52,7 +52,7 @@ ui <- fluidPage(
                   label = "Select City(s)",
                   choices = love_yourself$city,
                   multiple = TRUE,
-                  selected = "New York"),
+                  selected = "Seoul"),
       
       # Country selection
       selectInput(inputId = "country",
@@ -81,7 +81,7 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-
+  
   # Reactive function for live multiple selections
   date_selection <- reactive({
     c(love_yourself$date, love_yourself$attendance, love_yourself$city)
@@ -113,7 +113,7 @@ server <- function(input, output) {
       # select(city, continent, attendance) %>% 
       # group_by(city, continent) %>% 
       # count(attendance) %>% 
-
+      
       
       ggplot(aes(x = city, y = attendance, color = continent, fill = continent)) +
       geom_col() +
