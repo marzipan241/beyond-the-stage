@@ -5,8 +5,8 @@ account: marzipan241
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 878460
-bundleId: 2024712
+bundleId: 2024720
 url: https://marzipan241.shinyapps.io/beyond-the-stage/
-when: 1555725438.7199
+when: 1555725635.90474
 asMultiple: FALSE
 asStatic: FALSE
