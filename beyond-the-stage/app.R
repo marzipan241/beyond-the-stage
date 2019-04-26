@@ -51,22 +51,19 @@ ui <- fluidPage(
       selectInput(inputId = "city",
                   label = "Select City(s)",
                   choices = love_yourself$city,
-                  multiple = TRUE,
-                  selected = "Seoul"),
+                  multiple = TRUE),
       
       # Country selection
       selectInput(inputId = "country",
                   label = "Select Country(s)",
                   choices = love_yourself$country,
-                  multiple = TRUE,
-                  selected = "South Korea"),
+                  multiple = TRUE),
       
       # Continent selection
       selectInput(inputId = "continent",
                   label = "Select Continent(s)",
                   choices = love_yourself$continent,
-                  multiple = TRUE,
-                  selected = "Asia"),
+                  multiple = TRUE),
       
       # Hyperlink
       tags$a("GitHub Repo", href = "https://github.com/marzipan241/beyond-the-stage.git")
@@ -82,38 +79,35 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
-  # Reactive function for live multiple selections
-  date_selection <- reactive({
-    c(love_yourself$date, love_yourself$attendance, love_yourself$city)
-  })
-  
-  attendance_selection <- reactive({
-    c(love_yourself$attendance, love_yourself$city)
-  })
-  
+  # # Reactive function for live multiple selections
+  # date_selection <- reactive({
+  #   c(love_yourself$date, love_yourself$attendance, love_yourself$city)
+  # })
+  # 
+  # attendance_selection <- reactive({
+  #   c(love_yourself$attendance, love_yourself$city)
+  # })
+  # 
   city_selection <- reactive({
-    c(love_yourself$city, love_yourself$attendance)
+    c(love_yourself$city)
   })
-  
+
   country_selection <- reactive({
-    c(love_yourself$country, love_yourself$city, love_yourself$attendance)
+    c(love_yourself$country)
   })
-  
+
   continent_selection <- reactive({
-    c(love_yourself$continent, love_yourself$country, love_yourself$city, love_yourself$attendance)
+    c(love_yourself$continent)
   })
-  
+
   output$attendancePlot <- renderPlot({
     love_yourself %>% 
-      filter(date >= love_yourself$date[1] & date <= love_yourself$date[2]) %>% 
-      filter(attendance >= love_yourself$attendance[1] & attendance <= love_yourself$attendance[2]) %>% 
-      filter(city %in% city_selection()) %>% 
-      filter(country %in% country_selection()) %>% 
-      filter(continent %in% continent_selection()) %>% 
-      # select(city, continent, attendance) %>% 
-      # group_by(city, continent) %>% 
-      # count(attendance) %>% 
-      
+      select(date, attendance, city, country, continent) %>% 
+      mutate(date >= love_yourself$date[1] & date <= love_yourself$date[2]) %>% 
+      mutate(attendance >= love_yourself$attendance[1] & attendance <= love_yourself$attendance[2]) %>% 
+      mutate(city %in% city_selection()) %>% 
+      mutate(country %in% country_selection()) %>% 
+      mutate(continent %in% continent_selection()) %>% 
       
       ggplot(aes(x = city, y = attendance, color = continent, fill = continent)) +
       geom_col() +
