@@ -28,6 +28,31 @@ us_top10 <- read.csv("data/us_top10.csv")
 
 # bts_img <- readPNG("bts.png")
 
+# Import data for K-pop Top 10 Comparison
+
+k_danceability <- read_rds("./k_danceability.rds")
+k_energy <- read_rds("./k_energy.rds")
+k_speechiness <- read_rds("./k_speechiness.rds")
+k_acousticness <- read_rds("./k_acousticness.rds")
+k_instrumentalness <- read_rds("./k_instrumentalness.rds")
+k_liveness <- read_rds("./k_liveness.rds")
+k_valence <- read_rds("./k_valence.rds")
+k_tempo <- read_rds("./k_tempo.rds")
+k_duration_ms <- read_rds("./k_duration_ms.rds")
+
+# Import data for Billboard Top 10 Comparison
+
+us_danceability <- read_rds("./us_danceability.rds")
+us_energy <- read_rds("./us_energy.rds")
+us_speechiness <- read_rds("./us_speechiness.rds")
+us_acousticness <- read_rds("./us_acousticness.rds")
+us_instrumentalness <- read_rds("./us_instrumentalness.rds")
+us_liveness <- read_rds("./us_liveness.rds")
+us_valence <- read_rds("./us_valence.rds")
+us_tempo <- read_rds("./us_tempo.rds")
+us_duration_ms <- read_rds("./us_duration_ms.rds")
+
+
 # Define UI for application 
 
 ui <- navbarPage(
@@ -119,7 +144,7 @@ ui <- navbarPage(
       HTML(paste(
         h2("Overview"),
         br(),
-        "Beyond the Stage (BTS) searches into various possible explanations for the rapid rise of the Korean music group", tags$a("BTS (방탄소년단, Beyond the Scene)", href = "https://en.wikipedia.org/wiki/BTS_(band)"), "With a",  tags$a("3 new Guinness World Records", href =  "https://www.billboard.com/articles/news/bts/8507811/bts-break-3-guinness-world-records-boy-with-luv"), "in just 2019,", tags$a ("2 Billboard Music Awards", href = "https://www.billboard.com/articles/news/bbma/8456936/bts-wins-top-social-artist-2018-billboard-music-awards"), "YouTube records for numerous music video releases", tags$a("sold-out concerts in some of the largest stadiums in the world", href = "https://www.forbes.com/sites/caitlinkelley/2019/03/02/bts-sold-out-america-europe-world-tour-love-yourself/#660891c55af3"), "what distinguishes this group of seven from other artists?",
+        "Beyond the Stage (BTS) searches into various possible explanations for the rapid rise of the Korean music group", tags$a("BTS (방탄소년단, Beyond the Scene)", href = "https://en.wikipedia.org/wiki/BTS_(band)"), ". With ",  tags$a("3 new Guinness World Records", href =  "https://www.billboard.com/articles/news/bts/8507811/bts-break-3-guinness-world-records-boy-with-luv"), "in just 2019,", tags$a ("2 Billboard Music Awards", href = "https://www.billboard.com/articles/news/bbma/8456936/bts-wins-top-social-artist-2018-billboard-music-awards"), ", YouTube records for numerous music video releases, and", tags$a("sold-out concerts in some of the largest stadiums in the world", href = "https://www.forbes.com/sites/caitlinkelley/2019/03/02/bts-sold-out-america-europe-world-tour-love-yourself/#660891c55af3"), "what distinguishes this group of seven from other artists?",
         br(),
         br(),
         h3("Summary of Findings"),

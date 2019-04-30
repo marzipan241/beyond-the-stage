@@ -1,5 +1,5 @@
 ---
-title: "K-pop Spotify Charts"
+title: "Spotify Charts"
 author: "Margaret Sun"
 date: "4/30/2019"
 output: html_document
