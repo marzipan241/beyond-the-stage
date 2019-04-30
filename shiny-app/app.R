@@ -28,19 +28,22 @@ us_top10 <- read.csv("data/us_top10.csv")
 
 # bts_img <- readPNG("bts.png")
 
-# Define UI for application that draws a histogram
+# Define UI for application 
+
 ui <- navbarPage(
   
   # Application title
+  
   title = "BEYOND THE STAGE",
   
   # Application theme
+  
   theme = shinytheme("cosmo"),
   
   
   # Tab divisions
   
-  # "ABOUT" TAB
+  # "ABOUT" TAB provides and overview of the project and its findings
   
   tabPanel(
     title = "About",
@@ -52,7 +55,7 @@ ui <- navbarPage(
     )),
   
   
-  # "VARIABLES" TAB
+  # "VARIABLES" TAB explains the variables analyzed in the data sets
   
   tabPanel(
     title = "Variables",
@@ -64,7 +67,7 @@ ui <- navbarPage(
     )),
   
   
-  # "BEYOND K-POP?" TAB
+  # "BEYOND K-POP?" TAB compares BTS' statistics with those of prominent Korean artists
   
   tabPanel(
     title = "Beyond K-pop?",
@@ -84,7 +87,7 @@ ui <- navbarPage(
     )),
   
   
-  # "BEYOND BILLBOARD?" TAB
+  # "BEYOND BILLBOARD?" TAB compares BTS' statistics with those of prominent artists in Billboard
   
   tabPanel(
     title = "Beyond Billboard?",
@@ -104,9 +107,13 @@ ui <- navbarPage(
     )
   )
 )
-  
-  # Define server logic required to draw a histogram
+ 
+ 
+  # Define server logic required to create user interface elements
+
   server <- function(input, output) {
+    
+    # Content of the "ABOUT" tab
     
     output$about <- renderUI({
       HTML(paste(
@@ -143,6 +150,8 @@ ui <- navbarPage(
       ))
     })
     
+    # Content of the "VARIABLES" tab
+    
     output$variables <- renderUI({
       HTML(paste(
         h3("Variables analyzed come from the Spotify API. Find their explanations below:"),
@@ -177,6 +186,8 @@ ui <- navbarPage(
         br()
       ))
     })
+    
+    # References to RDS files relevant to the "BEYOND K-POP?" tab
     
     output$k_chart <- renderPlot({
       if(input$k_type == "Danceability"){
@@ -216,6 +227,8 @@ ui <- navbarPage(
       }
     })
     
+    # References to RDS files relevant to the "BEYOND BILLBOARD?" tab
+    
     output$us_chart <- renderPlot({
       if(input$us_type == "Danceability"){
         us_danceability
@@ -254,15 +267,8 @@ ui <- navbarPage(
       }
     })
     
-    
-    
   }
     
-    
-    
-    
-
-
   
   # Run the application 
   shinyApp(ui = ui, server = server)
