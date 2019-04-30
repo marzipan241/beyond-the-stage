@@ -14,6 +14,7 @@ library(shiny)
 library(shinythemes)
 library(tidyverse)
 library(ggplot2)
+library(png)
 
 
 # Load data
@@ -25,7 +26,7 @@ library(ggplot2)
 kpop_top10 <- read.csv("data/kpop_top10.csv")
 us_top10 <- read.csv("data/us_top10.csv")
 
-
+# bts_img <- readPNG("bts.png")
 
 # Define UI for application that draws a histogram
 ui <- navbarPage(
@@ -110,8 +111,6 @@ ui <- navbarPage(
     output$about <- renderUI({
       HTML(paste(
         h2("Overview"),
-        br(),
-        tags$img(src = 'bts.jpg', align = 'center'),
         br(),
         "Beyond the Stage (BTS) searches into various possible explanations for the rapid rise of the Korean music group", tags$a("BTS (방탄소년단, Beyond the Scene)", href = "https://en.wikipedia.org/wiki/BTS_(band)"), "With a",  tags$a("3 new Guinness World Records", href =  "https://www.billboard.com/articles/news/bts/8507811/bts-break-3-guinness-world-records-boy-with-luv"), "in just 2019,", tags$a ("2 Billboard Music Awards", href = "https://www.billboard.com/articles/news/bbma/8456936/bts-wins-top-social-artist-2018-billboard-music-awards"), "YouTube records for numerous music video releases", tags$a("sold-out concerts in some of the largest stadiums in the world", href = "https://www.forbes.com/sites/caitlinkelley/2019/03/02/bts-sold-out-america-europe-world-tour-love-yourself/#660891c55af3"), "what distinguishes this group of seven from other artists?",
         br(),
