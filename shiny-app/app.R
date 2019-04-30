@@ -26,20 +26,6 @@ kpop_top10 <- read.csv("data/kpop_top10.csv")
 us_top10 <- read.csv("data/us_top10.csv")
 
 
-# Importing charts
-
-k_danceability <- read_rds("./k_danceability.rds")
-k_energy <- read_rds("./k_energy.rds")
-k_speechiness <- read_rds("./k_speechiness.rds")
-k_acousticness <- read_rds("./k_acousticness.rds")
-k_instrumentalness <- read_rds("./k_instrumentalness.rds")
-k_liveness <- read_rds("./k_liveness.rds")
-k_valence <- read_rds("./k_valence.rds")
-k_tempo <- read_rds("./k_tempo.rds")
-k_duration_ms <- read_rds("./k_duration_ms.rds")
-
-
-
 
 # Define UI for application that draws a histogram
 ui <- navbarPage(
@@ -63,6 +49,7 @@ ui <- navbarPage(
                htmlOutput("about")
              ))
     )),
+  
   
   # "VARIABLES" TAB
   
@@ -93,6 +80,26 @@ ui <- navbarPage(
       mainPanel(
         plotOutput("k_chart")
       )
+    )),
+  
+  
+  # "BEYOND BILLBOARD?" TAB
+  
+  tabPanel(
+    title = "Beyond Billboard?",
+    h3("How Does BTS Compare in the Top 10 Billboard Artists?"),
+    br(),
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons(inputId = "us_type", 
+                     label = "Musical Attribute:", 
+                     choices = c("Danceability", "Energy", "Speechiness", "Acousticness", "Instrumentalness",
+                                 "Liveness", "Valence", "Tempo", "Duration (ms)"))
+      ),
+      
+      mainPanel(
+        plotOutput("us_chart")
+      )
     )
   )
 )
@@ -104,6 +111,8 @@ ui <- navbarPage(
       HTML(paste(
         h2("Overview"),
         br(),
+        tags$img(src = 'bts.jpg', align = 'center'),
+        br(),
         "Beyond the Stage (BTS) searches into various possible explanations for the rapid rise of the Korean music group", tags$a("BTS (방탄소년단, Beyond the Scene)", href = "https://en.wikipedia.org/wiki/BTS_(band)"), "With a",  tags$a("3 new Guinness World Records", href =  "https://www.billboard.com/articles/news/bts/8507811/bts-break-3-guinness-world-records-boy-with-luv"), "in just 2019,", tags$a ("2 Billboard Music Awards", href = "https://www.billboard.com/articles/news/bbma/8456936/bts-wins-top-social-artist-2018-billboard-music-awards"), "YouTube records for numerous music video releases", tags$a("sold-out concerts in some of the largest stadiums in the world", href = "https://www.forbes.com/sites/caitlinkelley/2019/03/02/bts-sold-out-america-europe-world-tour-love-yourself/#660891c55af3"), "what distinguishes this group of seven from other artists?",
         br(),
         br(),
@@ -114,7 +123,9 @@ ui <- navbarPage(
         p("Based on Spotify data, BTS members employ musical attributes similar to other Korean popular music artists. They distinguish themselves with rap, and a higher emphasis on spoken word in their tracks. From the concerns of youth in a neoliberal Korea, to songs encouraging every listener to “Love Yourself” in alliance with their UNICEF campaign, a higher Speechiness value supports articles attributing the group’s success to their social messages."),
         br(),
         h4("Comparison to Top 10 Billboard Artists"),
-        p("BTS is quite similar to the other Korean Artists (voted Top 10 through the Melon Music Awards), most notably in Speechiness."),
+        p("BTS is quite similar to the 2018 Top 10 Billboard-selected artists (almost completely dominated by American artists) on several attributes with notable exceptions."),
+        p("Where BTS stands out are in the attributes of Energy and Liveness, where the group maintains the highest value. Most U.S. news sources covering BTS’ performances in America have called attention to their high-energy live performances. Here we find these qualities embedded in their music."),
+        p("BTS is on the higher end of Speechiness yet again, although lower than Drake and XXXTENTACION. Although BTS’ songs span almost every music genre, their initial emphasis on rap remains salient in their tracks. BTS is also on the positive end for Valence values, aligning with their aim to uplift their listeners, even while interrogating complex issues. The group has the lowest value for Acousticness, a common perception associated with Korean popular music."),
         br(),
         h3("Sources"),
         a("Spotify", href = "https://open.spotify.com/artist/3Nrfpe0tUJi4K4DXYWgMUX"),
@@ -203,6 +214,44 @@ ui <- navbarPage(
       
       else if(input$k_type == "Duration (ms)"){
         k_duration_ms
+      }
+    })
+    
+    output$us_chart <- renderPlot({
+      if(input$us_type == "Danceability"){
+        us_danceability
+      }
+      
+      else if(input$us_type == "Energy"){
+        us_energy
+      }
+      
+      else if(input$us_type == "Speechiness"){
+        us_speechiness
+      }
+      
+      else if(input$us_type == "Acousticness"){
+        us_acousticness
+      }
+      
+      else if(input$us_type == "Instrumentalness"){
+        us_instrumentalness
+      }
+      
+      else if(input$us_type == "Liveness"){
+        us_liveness
+      }
+      
+      else if(input$us_type == "Valence"){
+        us_valence
+      }
+      
+      else if(input$us_type == "Tempo"){
+        us_tempo
+      }
+      
+      else if(input$us_type == "Duration (ms)"){
+        us_duration_ms
       }
     })
     
