@@ -1,0 +1,262 @@
+---
+title: "K-pop Spotify Charts"
+author: "Margaret Sun"
+date: "4/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Load relevant packages
+
+library(tidyverse)
+library(ggplot2)
+
+# Load data
+
+kpop_top10 <- read.csv("data/kpop_top10.csv")
+us_top10 <- read.csv("data/us_top10.csv")
+
+```
+
+```{r k_danceability}
+
+# Creates bar chart of average "danceability" of Top 10 Korean Artists
+
+k_danceability <- kpop_top10 %>%
+  # select(artist_name, danceability) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_danceability = mean(danceability)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_danceability, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Danceability of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Danceability")
+
+write_rds(k_danceability, "~/Desktop/beyond-the-stage/data/charts/k_danceability.rds")
+
+```
+
+```{r k_energy}
+
+# Creates bar chart of average "energy" of Top 10 Korean Artists
+
+k_energy <- kpop_top10 %>%
+  select(artist_name, energy) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_energy = mean(energy)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_energy, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Energy of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Energy")
+
+write_rds(k_energy, "~/Desktop/beyond-the-stage/data/charts/k_energy.rds")
+
+```
+
+```{r k_speechiness}
+
+# Creates bar chart of average "speechiness" of Top 10 Korean Artists
+
+k_speechiness <- kpop_top10 %>%
+  select(artist_name, speechiness) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_speechiness = mean(speechiness)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_speechiness, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Speechiness of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Speechiness")
+
+write_rds(k_speechiness, "~/Desktop/beyond-the-stage/data/charts/k_speechiness.rds")
+
+```
+
+```{r k_acousticness}
+
+# Creates bar chart of average "acousticness" of Top 10 Korean Artists
+
+k_acousticness <- kpop_top10 %>%
+  select(artist_name, acousticness) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_acousticness = mean(acousticness)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_acousticness, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Acousticness of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Acousticness")
+
+write_rds(k_acousticness, "~/Desktop/beyond-the-stage/data/charts/k_acousticness.rds")
+
+```
+
+```{r k_instrumentalness}
+
+# Creates bar chart of average "instrumentalness" of Top 10 Korean Artists
+
+k_instrumentalness <- kpop_top10 %>%
+  select(artist_name, instrumentalness) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_instrumentalness = mean(instrumentalness)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_instrumentalness, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Instrumentalness of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Instrumentalness")
+
+write_rds(k_instrumentalness, "~/Desktop/beyond-the-stage/data/charts/k_instrumentalness.rds")
+
+```
+
+```{r k_liveness}
+
+# Creates bar chart of average "liveness" of Top 10 Korean Artists
+
+k_liveness <- kpop_top10 %>%
+  select(artist_name, liveness) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_liveness = mean(liveness)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_liveness, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Liveness of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Liveness")
+
+write_rds(k_liveness, "~/Desktop/beyond-the-stage/data/charts/k_liveness.rds")
+
+```
+
+```{r k_valence}
+
+# Creates bar chart of average "valence" of Top 10 Korean Artists
+
+k_valence <- kpop_top10 %>%
+  select(artist_name, valence) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_valence = mean(valence)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_valence, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Valence of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Valence")
+
+write_rds(k_valence, "~/Desktop/beyond-the-stage/data/charts/k_valence.rds")
+
+```
+
+```{r k_tempo}
+
+# Creates bar chart of average "tempo" of Top 10 Korean Artists
+
+k_tempo <- kpop_top10 %>%
+  select(artist_name, tempo) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_tempo = mean(tempo)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_tempo, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Tempo of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Tempo")
+
+write_rds(k_tempo, "~/Desktop/beyond-the-stage/data/charts/k_tempo.rds")
+
+```
+
+```{r k_duration_ms}
+
+# Creates bar chart of average "duration_ms" of Top 10 Korean Artists
+
+k_duration_ms <- kpop_top10 %>%
+  select(artist_name, duration_ms) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_duration_ms = mean(duration_ms)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_duration_ms, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Duration of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Duration (ms)")
+
+write_rds(k_duration_ms, "~/Desktop/beyond-the-stage/data/charts/k_duration_ms.rds")
+
+```
+
+
+```{r us_danceability}
+
+# Creates bar chart of average "danceability" of Top 10 Billboard Artists
+
+k_danceability <- kpop_top10 %>%
+  # select(artist_name, danceability) %>%
+  mutate(artist_name = fct_relevel(artist_name,  c("Apink", "BIGBANG", "BLACKPINK", "BTOB",
+                                                   "EXO", "iKON", "Mamamoo", "TWICE", "Wanna One", "BTS"))) %>%
+  group_by(artist_name) %>%
+  summarize(avg_danceability = mean(danceability)) %>%
+  
+  ggplot(aes(x = artist_name, y = avg_danceability, fill = artist_name)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme(legend.position = "none") +
+  labs(title = "Average Danceability of Top 10 Korean Artists (2018)", 
+       caption = "Sources: 2018 Melon Music Awards, Spotify") +
+  xlab("Artist") + 
+  ylab("Danceability")
+
+write_rds(k_danceability, "~/Desktop/beyond-the-stage/data/charts/k_danceability.rds")
+
+```
