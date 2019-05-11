@@ -14,19 +14,17 @@ library(shiny)
 library(shinythemes)
 library(tidyverse)
 library(ggplot2)
-library(png)
 
 
 # Load data
 
 # Datasets scraped from the Spotify API in a Python script in extractions folder
 # Due to the immense difficulty and time taken to run the data extraction
-# scripts, this is a vanilla app as of Demo Day
+# scripts, this is a vanilla app
 
 kpop_top10 <- read.csv("data/kpop_top10.csv")
 us_top10 <- read.csv("data/us_top10.csv")
 
-# bts_img <- readPNG("bts.png")
 
 # Import data for K-pop Top 10 Comparison
 
@@ -144,7 +142,7 @@ ui <- navbarPage(
       HTML(paste(
         h2("Overview"),
         br(),
-        "Beyond the Stage (BTS) searches into various possible explanations for the rapid rise of the Korean music group", tags$a("BTS (방탄소년단, Beyond the Scene)", href = "https://en.wikipedia.org/wiki/BTS_(band)"), ". With ",  tags$a("3 new Guinness World Records", href =  "https://www.billboard.com/articles/news/bts/8507811/bts-break-3-guinness-world-records-boy-with-luv"), "in just 2019,", tags$a ("2 Billboard Music Awards", href = "https://www.billboard.com/articles/news/bbma/8456936/bts-wins-top-social-artist-2018-billboard-music-awards"), ", YouTube records for numerous music video releases, and", tags$a("sold-out concerts in some of the largest stadiums in the world", href = "https://www.forbes.com/sites/caitlinkelley/2019/03/02/bts-sold-out-america-europe-world-tour-love-yourself/#660891c55af3"), "what distinguishes this group of seven from other artists?",
+        "Beyond the Stage (BTS) searches into various possible explanations for the rapid rise of the Korean music group", tags$a("BTS (방탄소년단, Beyond the Scene)", href = "https://en.wikipedia.org/wiki/BTS_(band)"), ". With ",  tags$a("3 new Guinness World Records", href =  "https://www.billboard.com/articles/news/bts/8507811/bts-break-3-guinness-world-records-boy-with-luv"), "in just 2019,", tags$a ("4 Billboard Music Awards", href = "https://www.billboard.com/video/bts-wins-best-duo-or-group-about-billboard-music-award-2019-on-billboardyd-sourceflv-8509697"), ",", tags$a("YouTube", href = "https://www.youtube.com/watch?v=62E_xyj_oDA&list=PL_Cqw69_m_yzbMVGvQA8QWrL_HdVXJQX7"), "records for numerous music video releases, and", tags$a("sold-out concerts in some of the largest stadiums in the world", href = "https://www.forbes.com/sites/caitlinkelley/2019/03/02/bts-sold-out-america-europe-world-tour-love-yourself/#660891c55af3"), ", what distinguishes this group of seven from other artists?",
         br(),
         br(),
         h3("Summary of Findings"),
@@ -171,7 +169,10 @@ ui <- navbarPage(
         br(),
         br(),
         a("Browse Source Code Here", href = "https://github.com/marzipan241/beyond-the-stage.git"),
-        br()
+        br(),
+        br(),
+        h4("About"),
+        p("Margaret Sun is a sophomore studying Sociology at Harvard College who is immensely interested in internet mobilization (and alliteration, apparently), and hopes to take time in the future to build on this project. There are plenty more variables to be explored, and any suggestions on where to expand would be greatly appreciated!")
       ))
     })
     
